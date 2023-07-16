@@ -1,7 +1,6 @@
 package com.sexde.CodingChallengesSexde.Challenges;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
@@ -20,11 +19,9 @@ public final class ChallengeOne {
                 IntStream
                         .range(1, numbers.size())
                         .mapToObj(i ->
-                                new ArrayList<>(
-                                        List.of(
-                                                numbers.get(i - 1),
-                                                numbers.get(i)
-                                        )
+                                List.of(
+                                        numbers.get(i - 1),
+                                        numbers.get(i)
                                 )
                         )
                         .map(pairList ->
