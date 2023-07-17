@@ -34,6 +34,23 @@ public class ChallengeOneTest {
 
     }
 
+    @DisplayName("Test max numbers with correct array parallelized")
+    @ParameterizedTest
+    @MethodSource("argumentProvider")
+    void testChallengeOneCorrectArrayParallelized(final List<Integer> numbers) {
+
+        assertEquals(
+                numbers.get(numbers.size() - 1),
+                ChallengeOne.getMaxSumOfAdjacentNumbersParallelized(
+                        numbers
+                                .stream()
+                                .limit(numbers.size() - 1)
+                                .collect(Collectors.toList())
+                )
+        );
+
+    }
+
     static Stream<List<Integer>> argumentProvider() {
 
         return Stream.of(
@@ -66,6 +83,30 @@ public class ChallengeOneTest {
     void testChallengeOneSizeLessThanTwoArray() {
 
         assertThrows(InvalidParameterException.class, () -> ChallengeOne.getMaxSumOfAdjacentNumbers(List.of(1)));
+
+    }
+
+    @DisplayName("test max numbers with null array parallelized")
+    @Test
+    void testChallengeOneNullArrayParallelized() {
+
+        assertThrows(InvalidParameterException.class, () -> ChallengeOne.getMaxSumOfAdjacentNumbersParallelized(null));
+
+    }
+
+    @DisplayName("test max numbers with empty array parallelized")
+    @Test
+    void testChallengeOneEmptyArrayParallelized() {
+
+        assertThrows(InvalidParameterException.class, () -> ChallengeOne.getMaxSumOfAdjacentNumbersParallelized(Collections.emptyList()));
+
+    }
+
+    @DisplayName("test max numbers with array whose size is less than two parallelized")
+    @Test
+    void testChallengeOneSizeLessThanTwoArrayParallelized() {
+
+        assertThrows(InvalidParameterException.class, () -> ChallengeOne.getMaxSumOfAdjacentNumbersParallelized(List.of(1)));
 
     }
 
